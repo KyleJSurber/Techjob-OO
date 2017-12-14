@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+
+    <form th:object="${jobForm}" method="post">
+
+        <div class="form-group">
+            <label th:for="name">Name</label>
+            <input th:field="*{name}" />
+            <div th:errors="*{name}"></div>
+        </div>
+
+        <div class="form-group">
+            <label th:for="employerId">Employer</label>
+            <select th:field="*{employerId}">
+                <option th:each="employer : *{employers}"
+                        th:value="${employer.id}"
+                        th:text="${employer.value}"></option>
+            </select>
+            <br/>
+            <label th:for="location">Location</label>
+            <select th:field="*{locationId}">
+                <option th:each="location : *{locations}"
+                        th:value="${location.id}"
+                        th:text="${location.value}"></option>
+            </select>
+            <br/>
+            <label th:for="coreCompentency">Skill</label>
+            <select th:field="*{coreCompentencyId}">
+                <option th:each=" coreCompentency: *{coreCompetencies}"
+                        th:value="${coreCompentency.id}"
+                        th:text="${coreCompentency.value}"></option>
+            </select>
+            <br/>
+            <label th:for="positionType">Position Type</label>
+            <select th:field="*{positionTypeId}">
+                <option th:each="positionType : *{positionTypes}"
+                        th:value="${positionType.id}"
+                        th:text="${positionType.value}"></option>
+            </select>
+        </div>
+
+
+        <!-- TODO #5 - Create <select> dropdowns for other job fields -->
+
+        <input type="submit" value="Add Job" />
+    </form>
+
+</div>
+
+</body>
+</html>
